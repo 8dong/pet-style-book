@@ -9,6 +9,10 @@ export default class MyDocument extends Document {
             rel='stylesheet'
             href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'
           ></link>
+          <link
+            rel='stylesheet'
+            href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'
+          ></link>
         </Head>
         <body>
           <Main />
