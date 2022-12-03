@@ -3,9 +3,8 @@ import AdvertiesmentSection from '../components/UI/organisms/AdvertiesmentSectio
 import GridLayoutTemplate from '../components/templates/GirdLayout';
 import ShopListSection from '../components/UI/organisms/ShopItemListSection';
 
-import shopItems from '../data/shopItems';
-
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
+import type { ShopItemType } from '../data/shopItems';
 
 const adImages = [
   { imgSrc: '/assets/advertiesmentImage/ad_image_01.jpeg', imgAlt: '광고 이미지 1' },
@@ -13,7 +12,7 @@ const adImages = [
   { imgSrc: '/assets/advertiesmentImage/ad_image_03.jpeg', imgAlt: '광고 이미지 3' }
 ];
 
-const Home: NextPage = () => {
+const Home: NextPage<{ fetchedShopItems: ShopItemType[] }> = ({ fetchedShopItems }) => {
   return (
     <>
       <AdvertiesmentSection
@@ -22,10 +21,31 @@ const Home: NextPage = () => {
         adImages={adImages}
       />
       <GridLayoutTemplate columnWith='300px'>
-        <ShopListSection shopItems={shopItems} />
+        <ShopListSection shopItems={fetchedShopItems} />
       </GridLayoutTemplate>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const res = await fetch('http://localhost:3001/api/fetchShopItems', {
+    method: 'POST',
+    body: JSON.stringify({
+      fetchStartIndex: 0,
+      fetchLength: 3
+    }),
+    headers: {
+      'Content-type': 'application/json'
+    }
+  });
+
+  const { fetchedShopItems } = await res.json();
+
+  return {
+    props: {
+      fetchedShopItems
+    }
+  };
 };
 
 export default Home;
