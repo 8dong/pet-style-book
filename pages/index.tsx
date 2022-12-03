@@ -1,5 +1,10 @@
 import AdvertiesmentSection from '../components/UI/organisms/AdvertiesmentSection';
 
+import GridLayoutTemplate from '../components/templates/GirdLayout';
+import ShopListSection from '../components/UI/organisms/ShopItemListSection';
+
+import shopItems from '../data/shopItems';
+
 import type { NextPage } from 'next';
 
 const adImages = [
@@ -16,6 +21,9 @@ const Home: NextPage = () => {
         adDesc='애견 미용 스타일에 대한 모든 것을 제공해드려요'
         adImages={adImages}
       />
+      <GridLayoutTemplate columnWith='300px'>
+        <ShopListSection shopItems={shopItems} />
+      </GridLayoutTemplate>
     </>
   );
 };
