@@ -1,4 +1,5 @@
 import ShopItemBox from '../molecules/ShopItemBox';
+import ShopItemSkeletonBox from '../molecules/ShopItemSkeletonBox';
 
 import type { ShopItemType } from '../../../data/shopItems';
 
@@ -10,6 +11,7 @@ const ShopListSection = ({ shopItems }: { shopItems: ShopItemType[] }) => {
           <ShopItemBox shopItem={shopItem} />
         </li>
       ))}
+      <ShopItemSkeletonBox />
     </>
   );
 };
