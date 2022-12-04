@@ -2,6 +2,9 @@ import AdvertiesmentSection from '../components/UI/organisms/AdvertiesmentSectio
 
 import GridLayoutTemplate from '../components/templates/GirdLayout';
 import ShopListSection from '../components/UI/organisms/ShopItemListSection';
+import ShopItemSkeletonBox from '../components/UI/molecules/ShopItemSkeletonBox';
+
+import useInfinityScroll from '../hooks/useInfinityScroll';
 
 import type { NextPage, GetServerSideProps } from 'next';
 import type { ShopItemType } from '../data/shopItems';
@@ -13,6 +16,13 @@ const adImages = [
 ];
 
 const Home: NextPage<{ fetchedShopItems: ShopItemType[] }> = ({ fetchedShopItems }) => {
+  const { currentList, isFetchedDone, observerTargetEl } = useInfinityScroll({
+    initialList: fetchedShopItems,
+    fetchType: 'shopItems',
+    fetchUrl: 'http://localhost:3001/api/fetchShopItems',
+    fetchLength: 3
+  });
+
   return (
     <>
       <AdvertiesmentSection
@@ -21,7 +31,8 @@ const Home: NextPage<{ fetchedShopItems: ShopItemType[] }> = ({ fetchedShopItems
         adImages={adImages}
       />
       <GridLayoutTemplate columnWith='300px'>
-        <ShopListSection shopItems={fetchedShopItems} />
+        <ShopListSection shopItems={currentList as ShopItemType[]} />
+        {!isFetchedDone && <ShopItemSkeletonBox ref={observerTargetEl} />}
       </GridLayoutTemplate>
     </>
   );
