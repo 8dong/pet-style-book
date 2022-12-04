@@ -67,7 +67,7 @@ const shopItems: ShopItemType[] = [
   {
     id: '63494f40b484e885502ea8c1',
     shop_img: 'https://cdn.pixabay.com/photo/2020/04/11/14/55/shops-5030731_1280.jpg',
-    shop_name: '클로이 애견 살롱',
+    shop_name: '로이 애견 살롱',
     shop_operating_hours: '10:00 ~ 20:00',
     shop_tel: '053-321-3214'
   }
