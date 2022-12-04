@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 import { forwardRef } from 'react';
 
+import Card from '../atoms/layout/card';
 import SkeletonElement from '../atoms/skeleton/SkeletonElement';
 
 const ShopItemSkeletonBox = forwardRef<HTMLLIElement>((_, ref) => {
   return (
     <ShopItemSkeletonWrapper ref={ref}>
-      <div className='shopImage'>
-        <SkeletonElement />
-      </div>
-      <div className='shopInfo'>
-        <SkeletonElement />
-        <SkeletonElement />
-        <SkeletonElement />
-      </div>
+      <Card>
+        <div className='shopImage'>
+          <SkeletonElement />
+        </div>
+        <div className='shopInfo'>
+          <SkeletonElement />
+          <SkeletonElement />
+          <SkeletonElement />
+        </div>
+      </Card>
     </ShopItemSkeletonWrapper>
   );
 });
@@ -21,9 +24,6 @@ const ShopItemSkeletonBox = forwardRef<HTMLLIElement>((_, ref) => {
 const ShopItemSkeletonWrapper = styled.li`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   .shopImage {
     width: 300px;

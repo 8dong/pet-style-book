@@ -1,18 +1,21 @@
 import { forwardRef } from 'react';
 import styled from 'styled-components';
 
+import Card from '../atoms/layout/card';
 import SkeletonElement from '../atoms/skeleton/SkeletonElement';
 
 const StyleItemSkeletonBox = forwardRef<HTMLLIElement>((_, ref) => {
   return (
     <StyleItemSkeletonBoxWrapper ref={ref}>
-      <div className='styleImage'>
-        <SkeletonElement />
-      </div>
-      <div className='styleInfo'>
-        <SkeletonElement />
-        <SkeletonElement />
-      </div>
+      <Card>
+        <div className='styleImage'>
+          <SkeletonElement />
+        </div>
+        <div className='styleInfo'>
+          <SkeletonElement />
+          <SkeletonElement />
+        </div>
+      </Card>
     </StyleItemSkeletonBoxWrapper>
   );
 });

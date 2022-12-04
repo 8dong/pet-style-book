@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Card from '../atoms/layout/card';
 import ImageElement from '../atoms/image/ImageElement';
 import BoxTitleText from '../atoms/text/BoxTitleText';
 import LinkText from '../atoms/text/LinkText';
@@ -25,21 +26,23 @@ const StyleItemBox = ({ styleItem }: { styleItem: StyleItemType }) => {
 
   return (
     <StyleItemBoxWrapper>
-      <div className='styleImage'>
-        <ImageElement imgSrc={styleItem.style_img} imgAlt={styleItem.style_desc} />
-      </div>
-      <div className='styleInfo'>
-        <BoxTitleText>{styleItem.style_desc}</BoxTitleText>
-        <LinkText linkHref={styleItem.shop_id} linkName={styleItem.shop_name} />
-      </div>
-      <FloatButton
-        topPosition='80%'
-        leftPosition='80%'
-        buttonType={isLiked}
-        onClick={handleClickLikeButton}
-      >
-        <i className='fi fi-sr-heart'></i>
-      </FloatButton>
+      <Card>
+        <div className='styleImage'>
+          <ImageElement imgSrc={styleItem.style_img} imgAlt={styleItem.style_desc} />
+        </div>
+        <div className='styleInfo'>
+          <BoxTitleText>{styleItem.style_desc}</BoxTitleText>
+          <LinkText linkHref={styleItem.shop_id} linkName={styleItem.shop_name} />
+        </div>
+        <FloatButton
+          topPosition='80%'
+          leftPosition='80%'
+          buttonType={isLiked}
+          onClick={handleClickLikeButton}
+        >
+          <i className='fi fi-sr-heart'></i>
+        </FloatButton>
+      </Card>
     </StyleItemBoxWrapper>
   );
 };
@@ -47,9 +50,6 @@ const StyleItemBox = ({ styleItem }: { styleItem: StyleItemType }) => {
 const StyleItemBoxWrapper = styled.li`
   display: flex;
   flex-direction: column;
-  border-radius: 10px;
-
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   position: relative;
 

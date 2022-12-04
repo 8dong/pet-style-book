@@ -1,14 +1,15 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
+import Card from '../atoms/layout/card';
 import ImageElement from '../atoms/image/ImageElement';
+import ShopInfo from './ShopInfo';
 import FloatButton from '../atoms/button/FloatButton';
 
 import likShopItemsSlice from '../../../redux/likeShopItemsSlice';
 
 import type { ShopItemType } from '../../../data/shopItems';
 import type { RootState } from '../../../redux/store';
-import ShopInfo from './ShopInfo';
 
 const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
   const likeShopItems = useSelector((store: RootState) => store.likeShopItems);
@@ -24,18 +25,20 @@ const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
 
   return (
     <ShopItemBoxWrapper>
-      <div className='shopImage'>
-        <ImageElement imgSrc={shopItem.shop_img} imgAlt={shopItem.shop_name} />
-      </div>
-      <ShopInfo shopItem={shopItem} />
-      <FloatButton
-        topPosition='80%'
-        leftPosition='80%'
-        buttonType={isLiked}
-        onClick={handleClickLikeButton}
-      >
-        <i className='fi fi-sr-heart'></i>
-      </FloatButton>
+      <Card>
+        <div className='shopImage'>
+          <ImageElement imgSrc={shopItem.shop_img} imgAlt={shopItem.shop_name} />
+        </div>
+        <ShopInfo shopItem={shopItem} />
+        <FloatButton
+          topPosition='80%'
+          leftPosition='80%'
+          buttonType={isLiked}
+          onClick={handleClickLikeButton}
+        >
+          <i className='fi fi-sr-heart'></i>
+        </FloatButton>
+      </Card>
     </ShopItemBoxWrapper>
   );
 };
@@ -43,10 +46,6 @@ const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
 const ShopItemBoxWrapper = styled.article`
   display: flex;
   flex-direction: column;
-
-  border-radius: 10px;
-
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 
   position: relative;
 
