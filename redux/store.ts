@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import likShopItemsSlice from './likeShopItemsSlice';
+import likeStyleItemsSlice from './likeStyleItemsSlice';
 
 const store = configureStore({
   reducer: {
-    likeShopItems: likShopItemsSlice.reducer
+    likeShopItems: likShopItemsSlice.reducer,
+    likeStyleItems: likeStyleItemsSlice.reducer
   }
 });
 

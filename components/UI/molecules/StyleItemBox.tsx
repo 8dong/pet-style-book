@@ -1,12 +1,28 @@
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ImageElement from '../atoms/image/ImageElement';
 import BoxTitleText from '../atoms/text/BoxTitleText';
 import LinkText from '../atoms/text/LinkText';
+import FloatButton from '../atoms/button/FloatButton';
+
+import likeStyleItemsSlice from '../../../redux/likeStyleItemsSlice';
 
 import type { StyleItemType } from '../../../data/styleItems';
+import type { RootState } from '../../../redux/store';
 
 const StyleItemBox = ({ styleItem }: { styleItem: StyleItemType }) => {
+  const likeStyleItems = useSelector((store: RootState) => store.likeStyleItems);
+
+  const dispatch = useDispatch();
+  const handleClickLikeButton = () => {
+    dispatch(likeStyleItemsSlice.actions.toggleLikeHandle(styleItem));
+  };
+
+  const isLiked = likeStyleItems.some((likedStyle) => likedStyle.id === styleItem.id)
+    ? 'like'
+    : 'unlike';
+
   return (
     <StyleItemBoxWrapper>
       <div className='styleImage'>
@@ -16,6 +32,14 @@ const StyleItemBox = ({ styleItem }: { styleItem: StyleItemType }) => {
         <BoxTitleText>{styleItem.style_desc}</BoxTitleText>
         <LinkText linkHref={styleItem.shop_id} linkName={styleItem.shop_name} />
       </div>
+      <FloatButton
+        topPosition='80%'
+        leftPosition='80%'
+        buttonType={isLiked}
+        onClick={handleClickLikeButton}
+      >
+        <i className='fi fi-sr-heart'></i>
+      </FloatButton>
     </StyleItemBoxWrapper>
   );
 };
