@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 
 import type { ShopItemType } from '../data/shopItems';
+import type { StyleItemType } from '../data/styleItems';
 
 interface ShopItemsInfinityScroll {
   initialList: ShopItemType[];
@@ -9,7 +10,16 @@ interface ShopItemsInfinityScroll {
   fetchLength: number;
 }
 
-const useInfinityScroll = (infinityScrollConfig: ShopItemsInfinityScroll) => {
+interface StyleItemsInfinityScroll {
+  initialList: StyleItemType[];
+  fetchType: 'styleItems';
+  fetchUrl: string;
+  fetchLength: number;
+}
+
+const useInfinityScroll = (
+  infinityScrollConfig: ShopItemsInfinityScroll | StyleItemsInfinityScroll
+) => {
   const { initialList, fetchType, fetchUrl, fetchLength } = infinityScrollConfig;
 
   const [currentList, setCurrentList] = useState(initialList);
@@ -24,11 +34,18 @@ const useInfinityScroll = (infinityScrollConfig: ShopItemsInfinityScroll) => {
       }
     });
 
-    const { fetchedShopItems, fetchedDone } = await res.json();
+    if (fetchType === 'shopItems') {
+      const { fetchedShopItems, fetchedDone } = await res.json();
 
-    setCurrentList((prevList) => [...prevList, ...fetchedShopItems]);
-    setIsFetchedDone(fetchedDone);
-  }, [currentList, fetchUrl, fetchLength]);
+      setCurrentList((prevList) => [...prevList, ...fetchedShopItems]);
+      setIsFetchedDone(fetchedDone);
+    } else if (fetchType === 'styleItems') {
+      const { fetchedStyleItems, fetchedDone } = await res.json();
+
+      setCurrentList((prevList) => [...prevList, ...fetchedStyleItems]);
+      setIsFetchedDone(fetchedDone);
+    }
+  }, [currentList, fetchUrl, fetchLength, fetchType]);
 
   const onIntersect: IntersectionObserverCallback = useCallback(
     async ([entry]) => {

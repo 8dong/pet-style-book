@@ -15,7 +15,7 @@ const ShopListSection = ({ shopItems }: { shopItems: ShopItemType[] }) => {
 
   return (
     <>
-      {currentList.map((shopItem) => (
+      {(currentList as ShopItemType[]).map((shopItem) => (
         <li key={shopItem.id}>
           <ShopItemBox shopItem={shopItem} />
         </li>
