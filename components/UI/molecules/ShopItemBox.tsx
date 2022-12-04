@@ -2,15 +2,13 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 
 import ImageElement from '../atoms/image/ImageElement';
-import BoxTitle from '../atoms/text/BoxTitleText';
-import TimeText from '../atoms/text/TimeText';
-import TelText from '../atoms/text/TelText';
 import FloatButton from '../atoms/button/FloatButton';
 
 import likShopItemsSlice from '../../../redux/likeShopItemsSlice';
 
 import type { ShopItemType } from '../../../data/shopItems';
 import type { RootState } from '../../../redux/store';
+import ShopInfo from './ShopInfo';
 
 const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
   const likeShopItems = useSelector((store: RootState) => store.likeShopItems);
@@ -29,11 +27,7 @@ const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
       <div className='shopImage'>
         <ImageElement imgSrc={shopItem.shop_img} imgAlt={shopItem.shop_name} />
       </div>
-      <div className='shopInfo'>
-        <BoxTitle>{shopItem.shop_name}</BoxTitle>
-        <TimeText>{shopItem.shop_operating_hours}</TimeText>
-        <TelText>{shopItem.shop_tel}</TelText>
-      </div>
+      <ShopInfo shopItem={shopItem} />
       <FloatButton
         topPosition='80%'
         leftPosition='80%'
@@ -64,21 +58,6 @@ const ShopItemBoxWrapper = styled.article`
     margin-bottom: 20px;
 
     overflow: hidden;
-  }
-
-  .shopInfo {
-    display: flex;
-    flex-direction: column;
-
-    padding: 0 15px 15px;
-  }
-
-  .shopInfo strong {
-    margin-bottom: 10px;
-  }
-
-  .shopInfo time {
-    margin-bottom: 5px;
   }
 `;
 
