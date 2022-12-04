@@ -6,6 +6,7 @@ import useInfinityScroll from '../hooks/useInfinityScroll';
 
 import type { GetServerSideProps } from 'next';
 import type { StyleItemType } from '../data/styleItems';
+import SectionLayout from '../components/templates/SectionLayout';
 
 const StyleBook = ({ fetchedStyleItems }: { fetchedStyleItems: StyleItemType[] }) => {
   const { currentList, isFetchedDone, observerTargetEl } = useInfinityScroll({
@@ -17,10 +18,12 @@ const StyleBook = ({ fetchedStyleItems }: { fetchedStyleItems: StyleItemType[] }
 
   return (
     <>
-      <GridLayout columnWith='300px'>
-        <StyleListSection styleItems={currentList as StyleItemType[]} />
-        {!isFetchedDone && <StyleItemSkeletonBox ref={observerTargetEl} />}
-      </GridLayout>
+      <SectionLayout sectionTitle='스타일 리스트'>
+        <GridLayout columnWith='300px'>
+          <StyleListSection styleItems={currentList as StyleItemType[]} />
+          {!isFetchedDone && <StyleItemSkeletonBox ref={observerTargetEl} />}
+        </GridLayout>
+      </SectionLayout>
     </>
   );
 };

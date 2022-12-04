@@ -8,6 +8,7 @@ import useInfinityScroll from '../hooks/useInfinityScroll';
 
 import type { NextPage, GetServerSideProps } from 'next';
 import type { ShopItemType } from '../data/shopItems';
+import SectionLayout from '../components/templates/SectionLayout';
 
 const adImages = [
   { imgSrc: '/assets/advertiesmentImage/ad_image_01.jpeg', imgAlt: '광고 이미지 1' },
@@ -30,10 +31,12 @@ const Home: NextPage<{ fetchedShopItems: ShopItemType[] }> = ({ fetchedShopItems
         adDesc='애견 미용 스타일에 대한 모든 것을 제공해드려요'
         adImages={adImages}
       />
-      <GridLayoutTemplate columnWith='300px'>
-        <ShopListSection shopItems={currentList as ShopItemType[]} />
-        {!isFetchedDone && <ShopItemSkeletonBox ref={observerTargetEl} />}
-      </GridLayoutTemplate>
+      <SectionLayout sectionTitle='매장 리스트'>
+        <GridLayoutTemplate columnWith='300px'>
+          <ShopListSection shopItems={currentList as ShopItemType[]} />
+          {!isFetchedDone && <ShopItemSkeletonBox ref={observerTargetEl} />}
+        </GridLayoutTemplate>
+      </SectionLayout>
     </>
   );
 };
