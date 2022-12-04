@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 import Card from '../atoms/layout/card';
 import ImageElement from '../atoms/image/ImageElement';
@@ -23,8 +24,13 @@ const ShopItemBox = ({ shopItem }: { shopItem: ShopItemType }) => {
     ? 'like'
     : 'unlike';
 
+  const router = useRouter();
+  const handleClickShopItem = () => {
+    router.push(shopItem.id);
+  };
+
   return (
-    <ShopItemBoxWrapper>
+    <ShopItemBoxWrapper onClick={handleClickShopItem}>
       <Card>
         <div className='shopImage'>
           <ImageElement imgSrc={shopItem.shop_img} imgAlt={shopItem.shop_name} />
@@ -57,6 +63,16 @@ const ShopItemBoxWrapper = styled.article`
     margin-bottom: 20px;
 
     overflow: hidden;
+  }
+
+  .shopImage img {
+    transition: transform 200ms ease-in-out;
+  }
+
+  &:hover {
+    .shopImage img {
+      transform: scale(1.1);
+    }
   }
 `;
 

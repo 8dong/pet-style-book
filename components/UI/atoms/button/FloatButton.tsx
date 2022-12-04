@@ -1,3 +1,4 @@
+import React from 'react';
 import styled from 'styled-components';
 
 interface FloatButtonProps {
@@ -20,8 +21,9 @@ const FloatButton = ({
   children,
   onClick
 }: FloatButtonProps) => {
-  const handleClickFloatButton = () => {
+  const handleClickFloatButton = (event: React.MouseEvent) => {
     onClick();
+    event.stopPropagation();
   };
 
   const mappedColor = buttonColor[buttonType];
