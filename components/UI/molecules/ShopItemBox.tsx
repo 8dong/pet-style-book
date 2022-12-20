@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
-import Card from '../atoms/layout/card';
+import Card from '../atoms/layout/Card';
 import ImageElement from '../atoms/image/ImageElement';
 import ShopInfo from './ShopInfo';
 import FloatButton from '../atoms/button/FloatButton';
