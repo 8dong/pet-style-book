@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { forwardRef } from 'react';
 
-import Card from '../atoms/layout/card';
+import Card from '../atoms/layout/Card';
 import SkeletonElement from '../atoms/skeleton/SkeletonElement';
 
 const ShopItemSkeletonBox = forwardRef<HTMLLIElement>((_, ref) => {
