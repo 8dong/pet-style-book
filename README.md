@@ -65,31 +65,81 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
 ### API 명세
 
-#### '/shopItem'
+#### 1. shopItem
 
-- request body에 fetchStartIndex, fetchLength를 포함하여 요청을 전송합니다.
+##### 요청
 
-  - fetchStartIndex는 가져올 매장 리스트의 인덱스를 전달합니다.
+- URL : `http://api2-env.eba-zzvw8krp.ap-northeast-2.elasticbeanstalk.com/shopItem`
 
-  - fetchLength는 가져올 매장 리스트의 개수를 전달합니다.
+- Method : `POST`
 
-- request body로 요청한 매장 리스트를 응답으로 전달받습니다.
+- Header :
 
-#### '/styleItem'
+  - Content-Type : `application/json`
 
-- request body에 fetchStartIndex, fetchLength를 포함하여 요청을 전송합니다.
+- Body :
 
-  - fetchStartIndex는 가져올 스타일 리스트의 인덱스를 전달합니다.
+  - fetchStartIndex : number
 
-  - fetchLength는 가져올 스타일 리스트의 개수를 전달합니다.
+  - fetchLength : number
 
-- request body로 요청한 스타일 리스트를 응답으로 전달받습니다.
+#### 응답 예시
+
+```
+{
+  fetchedShopItems: [
+    {
+      id: string,
+      shop_img: string,
+      shop_name: string,
+      shop_operating_hours: string,
+      shop_tel: string
+    }
+  ],
+  isDone: boolean
+}
+```
+
+#### 2. styleItem
+
+##### 요청
+
+- URL : `http://api2-env.eba-zzvw8krp.ap-northeast-2.elasticbeanstalk.com/styleItem`
+
+- Method : `POST`
+
+- Header :
+
+  - Content-Type : `application/json`
+
+- Body :
+
+  - fetchStartIndex : number
+
+  - fetchLength : number
+
+#### 응답 예시
+
+```
+{
+  fetchedStyleItems: [
+    {
+      id: string,
+      shop_id: string,
+      shop_name: string,
+      style_desc: string,
+      style_img: string
+    }
+  ],
+  isDone: boolean
+}
+```
 
 ### 반응형 웹 구현
 
 - 데스크탑과 모바일 환경을 고려하여 반응형 웹 사이트로 제작하였습니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210188873-4ffe5b88-e54f-4f80-9ca6-8d81f428180b.gif" alt="responsive web" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210188873-4ffe5b88-e54f-4f80-9ca6-8d81f428180b.gif" alt="responsive web" />
 
 ### Style
 
@@ -109,7 +159,7 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
 - Carousel을 적용하여 3500ms마다 광고 이미지가 자동 슬라이드되도록 구현하였습니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189153-fc6cfa35-6ce6-4976-a733-50a1aafd1eec.gif" alt="carousel" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189153-fc6cfa35-6ce6-4976-a733-50a1aafd1eec.gif" alt="carousel" />
 
 <hr />
 
@@ -117,13 +167,13 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
 - Skeleton UI를 적용하여 UX 측면을 개선하였습니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189198-990cdbc6-ccab-4adc-8327-36d0c8a5e695.gif" alt="inifinity scroll" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189198-990cdbc6-ccab-4adc-8327-36d0c8a5e695.gif" alt="inifinity scroll" />
 
 <hr />
 
 - 매장별 좋아요 토글 버튼 클릭하여 좋아요 리스트에 추가/삭제가 가능합니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189231-c8699484-9f03-4e63-87cf-7449705d6761.gif" alt="like shop" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189231-c8699484-9f03-4e63-87cf-7449705d6761.gif" alt="like shop" />
 
 ### 스타일 북(/style_book)
 
@@ -131,19 +181,19 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
 - Skeleton UI를 적용하여 UX 측면을 개선하였습니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189286-88de3167-3b02-4b10-a94b-f2541f4b25bc.gif" alt="infinity scroll" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189286-88de3167-3b02-4b10-a94b-f2541f4b25bc.gif" alt="infinity scroll" />
 
 <hr />
 
 - 각 스타일의 좋아요 토글 버튼을 클릭하여 좋아요 리스트에 추가/삭제가 가능합니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189330-575b6197-a7ea-4511-9957-200399172d9c.gif" alt="like style" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189330-575b6197-a7ea-4511-9957-200399172d9c.gif" alt="like style" />
 
 <hr />
 
 - 각 스타일 정보 하단의 매장 이름 클릭시 해당 매장 페이지로 이동하게 됩니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189381-d42740c1-37d6-497d-8c3d-d7ea77d001d9.gif" alt="link shop" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189381-d42740c1-37d6-497d-8c3d-d7ea77d001d9.gif" alt="link shop" />
 
 ### 매장 디테일(/[shopId])
 
@@ -155,4 +205,4 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
 - 매장 좋아요 리스트와 스타일 좋아요 리스트를 보여주는 페이지입니다.
 
-<img src="https://user-images.githubusercontent.com/96307662/210189533-ef7d0111-d70a-43b1-a256-bb648fb46eef.gif" alt="myifo page" width="80%" />
+<img src="https://user-images.githubusercontent.com/96307662/210189533-ef7d0111-d70a-43b1-a256-bb648fb46eef.gif" alt="myifo page" />
