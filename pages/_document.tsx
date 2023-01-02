@@ -3,8 +3,14 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
-      <Html>
+      <Html lang='ko-KR'>
         <Head>
+          <meta name='keywords' content='pet, pet style, 애견 미용, 애견 미용샵' />
+          <meta
+            name='description'
+            content='애견 미용 플랫폼 Pet Style Book을 통해 애견 미용 스타일과 미용샵을 만나보세요!'
+          />
+          <meta name='author' content='8dong' />
           <link rel='icon' href='data:,' />
           <link
             rel='stylesheet'

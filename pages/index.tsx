@@ -1,5 +1,6 @@
-import AdvertiesmentSection from '../components/UI/organisms/AdvertiesmentSection';
+import Head from 'next/head';
 
+import AdvertiesmentSection from '../components/UI/organisms/AdvertiesmentSection';
 import GridLayoutTemplate from '../components/templates/GirdLayout';
 import ShopListSection from '../components/UI/organisms/ShopItemListSection';
 import ShopItemSkeletonBox from '../components/UI/molecules/ShopItemSkeletonBox';
@@ -26,6 +27,9 @@ const Home: NextPage<{ fetchedShopItems: ShopItemType[] }> = ({ fetchedShopItems
 
   return (
     <>
+      <Head>
+        <title>Pet Style Book | 애견 미용 스타일 북</title>
+      </Head>
       <AdvertiesmentSection
         adTitle='애견 미용 스타일북 온라인 서비스'
         adDesc='애견 미용 스타일에 대한 모든 것을 제공해드려요'

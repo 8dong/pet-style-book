@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { useSelector } from 'react-redux';
 
 import GridLayout from '../components/templates/GirdLayout';
@@ -17,6 +18,9 @@ const MyInfo = () => {
 
   return (
     <>
+      <Head>
+        <title>나의 정보 페이지</title>
+      </Head>
       <SectionLayout sectionTitle='좋아요한 매장'>
         {likeShopItemsIsEmpty ? (
           <Empty>좋아요한 매장이 없습니다.</Empty>

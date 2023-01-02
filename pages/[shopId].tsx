@@ -1,12 +1,18 @@
+import Head from 'next/head';
+
 import ShopDetailSection from '../components/UI/organisms/ShopDetailSection';
+import SectionLayout from '../components/templates/SectionLayout';
 
 import type { GetServerSideProps } from 'next';
 import type { ShopItemType } from '../data/shopItems';
-import SectionLayout from '../components/templates/SectionLayout';
 
 const ShopDetail = ({ findShopItem }: { findShopItem: ShopItemType }) => {
   return (
     <>
+      <Head>
+        <title>{findShopItem.shop_name}</title>
+        <meta name='description' content={`${findShopItem.shop_name} 매장 상세 정보 페이지`} />
+      </Head>
       <SectionLayout sectionTitle='매장 정보'>
         <ShopDetailSection shopItem={findShopItem} />
       </SectionLayout>

@@ -1,3 +1,5 @@
+import Head from 'next/head';
+
 import GridLayout from '../components/templates/GirdLayout';
 import StyleListSection from '../components/UI/organisms/StyleItemListSection';
 import StyleItemSkeletonBox from '../components/UI/molecules/StyleItemSkeletonBox';
@@ -18,6 +20,10 @@ const StyleBook = ({ fetchedStyleItems }: { fetchedStyleItems: StyleItemType[] }
 
   return (
     <>
+      <Head>
+        <title>애견 스타일 북</title>
+        <meta name='description' content='원하는 스타일을 손쉽게 찾아보세요!' />
+      </Head>
       <SectionLayout sectionTitle='스타일 리스트'>
         <GridLayout columnWith='300px'>
           <StyleListSection styleItems={currentList as StyleItemType[]} />
