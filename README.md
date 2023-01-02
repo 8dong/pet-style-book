@@ -55,6 +55,12 @@ atoms, molecules, organisms, template으로 프로젝트를 구성하였습니�
 
   - 기존 아토믹과 다르게 templates은 독립적인 Layout 역할로 분류하였으며, pages는 따로 생성하지 않고 pages 폴더를 사용하였습니다.
 
+## CI/CD
+
+- GitHub Actions를 활용하여 CI/CD 과정을 자동화하였습니다.
+
+- main 브랜치에 push, merge와 같은 이벤트가 발생하는 경우 CICD.yml(workflow)가 자동 실행되도록 설계하였습니다.
+
 ## 구현 명세
 
 ### API 명세
