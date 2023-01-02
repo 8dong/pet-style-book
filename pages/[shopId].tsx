@@ -17,15 +17,18 @@ const ShopDetail = ({ findShopItem }: { findShopItem: ShopItemType }) => {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const shopId = context.params!.shopId;
 
-  const res = await fetch('http://localhost:3001/api/fetchShopItems', {
-    method: 'POST',
-    body: JSON.stringify({
-      fetchStartIndex: 0
-    }),
-    headers: {
-      'Content-type': 'application/json'
+  const res = await fetch(
+    'http://api2-env.eba-zzvw8krp.ap-northeast-2.elasticbeanstalk.com/shopItem',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        fetchStartIndex: 0
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
     }
-  });
+  );
   const { fetchedShopItems: allShopItems } = await res.json();
 
   const findShopItem = (allShopItems as ShopItemType[]).find((shopItem) => shopItem.id === shopId);

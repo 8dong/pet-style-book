@@ -13,7 +13,7 @@ const StyleBook = ({ fetchedStyleItems }: { fetchedStyleItems: StyleItemType[] }
     initialList: fetchedStyleItems,
     fetchLength: 3,
     fetchType: 'styleItems',
-    fetchUrl: 'http://localhost:3001/api/fetchStyleItems'
+    fetchUrl: '/styleItem'
   });
 
   return (
@@ -29,16 +29,19 @@ const StyleBook = ({ fetchedStyleItems }: { fetchedStyleItems: StyleItemType[] }
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch('http://localhost:3001/api/fetchStyleItems', {
-    method: 'POST',
-    body: JSON.stringify({
-      fetchStartIndex: 0,
-      fetchLength: 3
-    }),
-    headers: {
-      'Content-type': 'application/json'
+  const res = await fetch(
+    'http://api2-env.eba-zzvw8krp.ap-northeast-2.elasticbeanstalk.com/styleItem',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        fetchStartIndex: 0,
+        fetchLength: 3
+      }),
+      headers: {
+        'Content-type': 'application/json'
+      }
     }
-  });
+  );
 
   const { fetchedStyleItems } = await res.json();
 
